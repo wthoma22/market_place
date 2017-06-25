@@ -17,13 +17,15 @@ require 'spec_helper'
     it { should validate_confirmation_of(:password)}
     it { should allow_value('example@domain.com').for(:email)}
     it { should validate_uniqueness_of(:auth_token) }
+
+    it { should have_many(:products) }
 end
 
 describe "#generate_authentication_token!" do
   before { @user = FactoryGirl.build(:user) }
 
   subject { @user }
-  
+
   it "generates a unique token" do
     Devise.stub(:friendly_token).and_return("auniquetoken123")
     @user.generate_authentication_token!
