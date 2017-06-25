@@ -2,7 +2,6 @@ require 'spec_helper'
 
   describe User do
     before { @user = FactoryGirl.build(:user) }
-
     subject { @user }
 
     it { should respond_to(:email) }
@@ -20,6 +19,23 @@ require 'spec_helper'
 
     it { should have_many(:products) }
 end
+  describe "#product associations" do
+    before { @user = FactoryGirl.build(:user) }
+    subject { @user }
+    
+    before do
+      @user.save
+      3.times { FactoryGirl.create :product, user: @user }
+    end
+
+    it "destroys the associated products on self destuct" do
+      products = @user.products
+      @user.destroy
+      products.each do |product|
+        expect(Product.find(product)).to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+  end
 
 describe "#generate_authentication_token!" do
   before { @user = FactoryGirl.build(:user) }
