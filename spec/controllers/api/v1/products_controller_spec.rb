@@ -46,7 +46,7 @@ describe Api::V1::ProductsController do
       it { should respond_with 201 }
     end
 
-    context "when is not created" do
+    context "when it is not created" do
       before(:each) do
         user = FactoryGirl.create :user
         @invalid_product_attributes = { title: "Smart TV", price: "Twelve dollars" }
@@ -105,6 +105,17 @@ describe Api::V1::ProductsController do
         end
 
         it { should respond_with 422}
+      end
+
+      describe "DELETE #destroy" do
+        before(:each) do
+      @user = FactoryGirl.create :user
+      @product = FactoryGirl.create :product, user: @user
+      api_authorization_header @user.auth_token
+      delete :destroy, { user_id: @user.id, id: @product.id }
+    end
+
+      it { should respond_with 204 }
       end
     end
   end
