@@ -18,11 +18,12 @@ require 'spec_helper'
     it { should validate_uniqueness_of(:auth_token) }
 
     it { should have_many(:products) }
+    it { should have_many(:orders) }
 end
   describe "#product associations" do
     before { @user = FactoryGirl.build(:user) }
     subject { @user }
-    
+
     before do
       @user.save
       3.times { FactoryGirl.create :product, user: @user }
