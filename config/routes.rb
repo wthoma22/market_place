@@ -13,6 +13,7 @@ MarketPlaceApi::Application.routes.draw do
       devise_for :users
       resources :sessions, :only => [:create, :destroy]
       resources :products, :only => [:show, :index]
+      resources :orders, :only => [:index]
     end
   end
 end
