@@ -9,7 +9,7 @@ describe Api::V1::ProductsController do
 
     it "returns the information about a reporter on a hash" do
       product_response = json_response
-      expect(product_response[:title]).to eq @product.title
+      expect(product_response[:product][:title]).to eq @product.title
     end
 
     it { should respond_with 200}
@@ -40,7 +40,7 @@ describe Api::V1::ProductsController do
 
       it "renders the json representation for the product record just created" do
         product_response = json_response
-        expect(product_response[:title]).to eql @product_attributes[:title]
+        expect(product_response[:product][:title]).to eq @product_attributes[:title]
       end
 
       it { should respond_with 201 }
@@ -82,7 +82,7 @@ describe Api::V1::ProductsController do
 
         it "renders the json representation for the updated user" do
           product_response = json_response
-          expect(product_response[:title]).to eql "An expensive TV"
+          expect(product_response[:product][:title]).to eq "An expensive TV"
         end
 
         it { should respond_with 200 }
