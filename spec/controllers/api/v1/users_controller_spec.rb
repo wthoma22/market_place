@@ -15,6 +15,11 @@ describe Api::V1::UsersController do
     it { should respond_with 200 }
   end
 
+  it "has the product ids as an embeded object" do
+    user_response = json_response[:user]
+    expect(user_response[:product_ids]).to eq []
+  end
+
   describe "POST #create" do
 
     context "when user is successfully created" do
@@ -99,7 +104,7 @@ describe Api::V1::UsersController do
      api_authorization_header @user.auth_token
      delete :destroy, { id: @user.id }
    end
-   
+
    it { should respond_with 204 }
  end
 end
