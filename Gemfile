@@ -52,6 +52,8 @@ gem 'orm_adapter', '~> 0.5.0'
 
 gem 'kaminari'
 
+gem 'delayed_job_active_record'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
