@@ -50,6 +50,8 @@ gem "devise"
 
 gem 'orm_adapter', '~> 0.5.0'
 
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
